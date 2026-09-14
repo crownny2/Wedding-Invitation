@@ -172,10 +172,20 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[100vh] flex-col sm:block">
-      {/* Garden backdrop — full bleed behind both panels */}
+      {/* Garden backdrop — the source photo is a wide landscape frame with
+          all the floral detail packed into its corners and a blank center.
+          bg-cover on a tall portrait phone would crop straight through that
+          blank middle, hiding the garden entirely — so on mobile we show
+          the whole frame uncropped (bg-contain, anchored to the top) and
+          let the matching cream fill carry the rest of the section, then
+          switch back to a full-bleed cover crop once there's a wide enough
+          viewport for it to still read as a garden. */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+        className="absolute inset-0 bg-contain bg-top bg-no-repeat sm:bg-cover sm:bg-center"
+        style={{
+          backgroundImage: "url('/images/hero-bg.jpg')",
+          backgroundColor: "var(--color-cream)",
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream/5 to-cream/25" />
 
