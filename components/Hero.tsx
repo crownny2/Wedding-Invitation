@@ -173,21 +173,20 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-[100vh] flex-col sm:block">
       {/* Garden backdrop — the source photo is a wide landscape frame with
-          all the floral detail packed into its corners and a blank center.
-          bg-cover on a tall portrait phone would crop straight through that
-          blank middle, hiding the garden entirely — so on mobile we show
-          the whole frame uncropped (bg-contain, anchored to the top) and
-          let the matching cream fill carry the rest of the section, then
-          switch back to a full-bleed cover crop once there's a wide enough
-          viewport for it to still read as a garden. */}
+          all its floral detail packed into the corners. Covering the full
+          section height on a tall phone zoomed straight through the blank
+          middle, hiding the garden; containing the whole frame at a fixed
+          size left a hard seam where the image stopped and flat cream
+          began. So on mobile the image is scoped to exactly the photo
+          band's own height (same box the couple's portrait sits in) with a
+          cover crop close to that band's own aspect ratio, then fades to
+          the cream fill right at that band's bottom edge — no cutoff line.
+          Desktop keeps the original full-bleed cover crop. */}
       <div
-        className="absolute inset-0 bg-contain bg-top bg-no-repeat sm:bg-cover sm:bg-center"
-        style={{
-          backgroundImage: "url('/images/hero-bg.jpg')",
-          backgroundColor: "var(--color-cream)",
-        }}
+        className="absolute inset-x-0 top-0 h-[48vh] bg-cover bg-center sm:inset-0 sm:h-auto"
+        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream/5 to-cream/25" />
+      <div className="absolute inset-x-0 top-0 h-[48vh] bg-gradient-to-b from-transparent via-transparent to-cream sm:inset-0 sm:h-auto sm:bg-gradient-to-b sm:from-transparent sm:via-cream/5 sm:to-cream/25" />
 
       {/* Couple portrait — background-removed cutout so the garden shows
           through around them instead of a rectangular photo edge. A top
