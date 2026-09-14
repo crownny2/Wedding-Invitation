@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Mrs_Saint_Delafield, Fraunces } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Mrs_Saint_Delafield,
+  Fraunces,
+  Great_Vibes,
+} from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -22,6 +27,12 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-great-vibes",
+});
+
 export const metadata: Metadata = {
   title: "Benjamin & Rofamae — September 23, 2026",
   description:
@@ -34,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cormorant.variable} ${delafield.variable} ${fraunces.variable} font-serif text-[19px] leading-relaxed antialiased`}
+        className={`${cormorant.variable} ${delafield.variable} ${fraunces.variable} ${greatVibes.variable} font-serif text-[19px] leading-relaxed antialiased`}
       >
         {children}
       </body>

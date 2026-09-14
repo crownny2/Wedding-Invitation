@@ -9,17 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.116.0",
+    "framer-motion": "^11.11.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "framer-motion": "^11.11.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.6.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.25",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0"
+    "typescript": "^5.6.0"
   }
 }

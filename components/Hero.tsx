@@ -171,16 +171,33 @@ export default function Hero() {
   );
 
   return (
-    <section
-      className="relative flex min-h-[100svh] items-center justify-center bg-cover bg-center px-5 py-16"
-      style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
-    >
-      {/* Overlay — swap for a motion.div fade-in if you want the hero to reveal on load */}
+    <section className="relative flex min-h-[100svh] flex-col sm:block">
+      {/* Garden backdrop — full bleed behind both panels */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream/5 to-cream/25" />
+
+      {/* Couple portrait — background-removed cutout so the garden shows
+          through around them instead of a rectangular photo edge. A top
+          banner on mobile (in-flow, so the text below never overlaps it);
+          absolutely positioned on larger screens so it can't affect where
+          the text column centers itself. */}
+      <div className="relative h-[48svh] w-full shrink-0 sm:absolute sm:inset-y-0 sm:left-[5vw] sm:h-auto sm:w-[380px]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/wed-cutout.png"
+          alt="Benjamin and Rofamae"
+          className="absolute bottom-0 left-1/2 h-full w-full -translate-x-1/2 object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_92%,transparent_100%)] sm:left-0 sm:translate-x-0 sm:[object-position:0%_92%]"
+          style={{ filter: "drop-shadow(0 18px 22px rgba(51,40,30,0.28))" }}
+        />
+      </div>
 
       <SparkleField reduceMotion={!!reduceMotion} />
 
-      <div className="relative z-10 mx-auto max-w-[480px] text-center">
+      <div className="relative z-10 flex w-full flex-1 items-center justify-center px-5 py-10 text-center sm:min-h-[100svh] sm:flex-none sm:px-10 sm:py-16">
+        <div className="mx-auto w-full max-w-[480px]">
         <SprigIcon className="mx-auto mb-4 h-6 w-6 text-mauve" />
 
         <p className="text-[14px] tracking-[.28em] text-ink">
@@ -205,33 +222,22 @@ export default function Hero() {
         >
           <motion.span
             variants={nameLine}
-            className="block text-[clamp(38px,9vw,56px)] font-medium"
+            className="block whitespace-nowrap text-[clamp(26px,7vw,46px)] font-medium"
           >
-            Benjamin
+            Benjamin Campbell
           </motion.span>
           <motion.span
             variants={nameLine}
-            className="block text-[clamp(38px,9vw,56px)] font-medium"
-          >
-            Campbell
-          </motion.span>
-          <motion.span
-            variants={nameLine}
-            className="font-script my-1.5 block text-[clamp(32px,7vw,44px)] leading-none tracking-normal text-mauve"
+            className="my-1.5 block text-[clamp(32px,7vw,44px)] leading-none tracking-normal text-mauve"
+            style={{ fontFamily: "'Mrs Saint Delafield', cursive" }}
           >
             &amp;
           </motion.span>
           <motion.span
             variants={nameLine}
-            className="block text-[clamp(38px,9vw,56px)] font-medium"
+            className="block whitespace-nowrap text-[clamp(26px,7vw,46px)] font-medium"
           >
-            Rofamae
-          </motion.span>
-          <motion.span
-            variants={nameLine}
-            className="block text-[clamp(38px,9vw,56px)] font-medium"
-          >
-            Blase
+            Rofamae Blase
           </motion.span>
         </motion.h1>
 
@@ -254,7 +260,9 @@ export default function Hero() {
 
           <div className="flex items-center gap-2.5 text-olive-dark">
             <ClockIcon />
-            <span className="text-[17px] tracking-wide">4:00 PM</span>
+            <span className="whitespace-nowrap text-[17px] tracking-wide">
+              4:00 PM
+            </span>
           </div>
         </div>
 
@@ -271,6 +279,7 @@ export default function Hero() {
         <p className="mt-2 text-[13px] tracking-[.32em] text-mauve">
           TOGETHER FOREVER
         </p>
+        </div>
       </div>
     </section>
   );

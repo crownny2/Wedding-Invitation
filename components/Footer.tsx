@@ -22,13 +22,32 @@ function HeartIcon({ className = "" }: { className?: string }) {
   );
 }
 
+function HeartOutlineIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      className={className}
+    >
+      <path d="M12 20.3s-7.3-4.7-9.8-9.2C.7 7.8 1.9 4.6 5 3.8c1.9-.5 3.8.3 4.8 1.9.3.5.7 1.2 1.9 1.2s1.6-.7 1.9-1.2c1-1.6 2.9-2.4 4.8-1.9 3.1.8 4.3 4 3.1 7.3-2.5 4.5-9.5 9.2-9.5 9.2Z" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="bg-olive-dark px-5 py-16 text-center text-cream">
       <SprigIcon className="mx-auto mb-4 h-6 w-6 text-rose" />
 
-      <p className="mb-4 font-display text-[42px] italic tracking-[.01em] text-rose">
-        Benjamin &amp; Rofamae
+      <p
+        className="mb-4 flex items-center justify-center gap-3 text-[52px] leading-none text-rose"
+        style={{ fontFamily: "'Mrs Saint Delafield', cursive" }}
+      >
+        <span>Ben</span>
+        <HeartOutlineIcon className="mt-2 h-6 w-6 shrink-0" />
+        <span>Rofa</span>
       </p>
 
       <div className="mx-auto mb-5 flex items-center justify-center gap-3">
