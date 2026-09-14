@@ -59,7 +59,12 @@ function RoleBlock({ group }: { group: Group }) {
       </p>
       <div className="text-base leading-relaxed text-ink sm:text-[18px]">
         {group.names.map((n) => (
-          <p key={n} className="mb-1">
+          <p
+            key={n}
+            className={`mb-1 ${
+              n.includes("·") ? "whitespace-nowrap text-[12px] sm:text-[18px]" : ""
+            }`}
+          >
             {n}
           </p>
         ))}

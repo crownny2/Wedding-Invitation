@@ -117,14 +117,14 @@ function SprigIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CalendarIcon() {
+function CalendarIcon({ className = "h-7 w-7 shrink-0" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.3}
-      className="h-7 w-7 shrink-0"
+      className={className}
     >
       <rect x="3.5" y="5" width="17" height="15" rx="1.5" />
       <path d="M3.5 9.5h17" />
@@ -134,14 +134,14 @@ function CalendarIcon() {
   );
 }
 
-function ClockIcon() {
+function ClockIcon({ className = "h-7 w-7 shrink-0" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.3}
-      className="h-7 w-7 shrink-0"
+      className={className}
     >
       <circle cx="12" cy="12" r="8.25" />
       <path d="M12 7.75V12l3 2" />
@@ -149,14 +149,14 @@ function ClockIcon() {
   );
 }
 
-function PinIcon() {
+function PinIcon({ className = "h-[18px] w-[18px] shrink-0" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.3}
-      className="h-[18px] w-[18px] shrink-0"
+      className={className}
     >
       <path d="M12 21s-6.5-5.7-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.3-6.5 11-6.5 11Z" />
       <circle cx="12" cy="10" r="2.25" />
@@ -242,41 +242,45 @@ export default function Hero() {
         </motion.h1>
 
         {/* Details card */}
-        <div className="mx-auto mt-9 flex max-w-[420px] items-center justify-center gap-5 rounded-2xl border border-olive-dark/15 bg-paper/85 px-7 py-5 shadow-[0_8px_24px_-12px_rgba(51,58,34,0.35)] backdrop-blur-sm sm:gap-7">
-          <div className="flex items-center gap-3 text-olive-dark">
-            <CalendarIcon />
+        <div className="mx-auto mt-9 flex max-w-[420px] items-center justify-center gap-3 rounded-2xl border border-olive-dark/15 bg-paper/85 px-4 py-4 shadow-[0_8px_24px_-12px_rgba(51,58,34,0.35)] backdrop-blur-sm sm:gap-7 sm:px-7 sm:py-5">
+          <div className="flex items-center gap-2 text-olive-dark sm:gap-3">
+            <CalendarIcon className="h-5 w-5 shrink-0 sm:h-7 sm:w-7" />
             <div className="text-left leading-tight">
-              <div className="text-[15px] tracking-wide">Wednesday</div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-[28px] font-semibold text-wine">23</span>
-                <span className="text-[13px] tracking-wide text-olive-dark/80">
+              <div className="whitespace-nowrap text-[12px] tracking-wide sm:text-[15px]">
+                Wednesday
+              </div>
+              <div className="flex items-baseline gap-1">
+                <span className="text-[20px] font-semibold text-wine sm:text-[28px]">
+                  23
+                </span>
+                <span className="whitespace-nowrap text-[10px] tracking-wide text-olive-dark/80 sm:text-[13px]">
                   September 2026
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="h-10 w-px bg-olive-dark/20" />
+          <div className="h-10 w-px shrink-0 bg-olive-dark/20" />
 
-          <div className="flex items-center gap-2.5 text-olive-dark">
-            <ClockIcon />
-            <span className="whitespace-nowrap text-[17px] tracking-wide">
+          <div className="flex items-center gap-2 text-olive-dark sm:gap-2.5">
+            <ClockIcon className="h-5 w-5 shrink-0 sm:h-7 sm:w-7" />
+            <span className="whitespace-nowrap text-[14px] tracking-wide sm:text-[17px]">
               4:00 PM
             </span>
           </div>
         </div>
 
-        <p className="mt-4 flex items-center justify-center gap-1.5 text-[16px] tracking-[.05em] text-ink">
-          <PinIcon />
-          Eagle&apos;s Ridge, Diversion Road, Davao City
+        <p className="mx-auto mt-4 flex max-w-[340px] items-start justify-center gap-1.5 text-center text-[13px] leading-snug tracking-[.02em] text-ink sm:max-w-none sm:text-[16px] sm:tracking-[.05em]">
+          <PinIcon className="mt-0.5 h-[15px] w-[15px] shrink-0 sm:mt-0 sm:h-[18px] sm:w-[18px]" />
+          <span>Eagle&apos;s Ridge, Diversion Road, Davao City</span>
         </p>
 
-        <div className="mt-7 flex items-center justify-center gap-3 text-olive-dark/40">
-          <span className="h-px w-9 bg-olive-dark/30" />
-          <SprigIcon className="h-3.5 w-3.5 rotate-90 text-mauve/70" />
-          <span className="h-px w-9 bg-olive-dark/30" />
+        <div className="mt-7 flex items-center justify-center gap-2 text-olive-dark/40 sm:gap-3">
+          <span className="h-px w-7 bg-olive-dark/30 sm:w-9" />
+          <SprigIcon className="h-3.5 w-3.5 shrink-0 rotate-90 text-mauve/70" />
+          <span className="h-px w-7 bg-olive-dark/30 sm:w-9" />
         </div>
-        <p className="mt-2 text-[13px] tracking-[.32em] text-mauve">
+        <p className="mt-2 text-[11px] tracking-[.2em] text-mauve sm:text-[13px] sm:tracking-[.32em]">
           TOGETHER FOREVER
         </p>
         </div>
