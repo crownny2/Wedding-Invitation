@@ -45,15 +45,10 @@ type Step = "attendance" | "guest-info" | "confirmed";
 export default function RSVPSection() {
   const reduceMotion = useReducedMotion();
   const [step, setStep] = useState<Step>("attendance");
+  const [attending, setAttending] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmedName, setConfirmedName] = useState("");
-
-  const handleDecline = () => {
-    // Fire-and-forget: the UI already shows the "you'll be missed"
-    // message immediately, per spec no error state is shown for declines.
-    void submitDecline();
-  };
 
   const handleGuestSubmit = async (data: {
     name: string;
@@ -62,7 +57,9 @@ export default function RSVPSection() {
   }) => {
     setSubmitting(true);
     setError(null);
-    const result = await submitAttendance(data);
+    const result = attending
+      ? await submitAttendance(data)
+      : await submitDecline({ name: data.name, message: data.message });
     setSubmitting(false);
 
     if (!result.ok) {
@@ -123,8 +120,10 @@ export default function RSVPSection() {
             >
               <AttendanceStep
                 submitting={submitting}
-                onContinue={() => setStep("guest-info")}
-                onDecline={handleDecline}
+                onContinue={(isAttending) => {
+                  setAttending(isAttending);
+                  setStep("guest-info");
+                }}
               />
             </motion.div>
           )}
@@ -139,6 +138,7 @@ export default function RSVPSection() {
               transition={{ duration: 0.5, ease: LUXE_EASE }}
             >
               <GuestInformationStep
+                attending={attending}
                 submitting={submitting}
                 error={error}
                 onSubmit={handleGuestSubmit}
@@ -154,7 +154,7 @@ export default function RSVPSection() {
               animate="visible"
               transition={{ duration: 0.6, ease: LUXE_EASE }}
             >
-              <RSVPConfirmation name={confirmedName} />
+              <RSVPConfirmation name={confirmedName} attending={attending} />
             </motion.div>
           )}
         </AnimatePresence>

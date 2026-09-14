@@ -5,10 +5,12 @@ import { useState } from "react";
 const MAX_GUESTS = 10;
 
 export default function GuestInformationStep({
+  attending,
   onSubmit,
   submitting,
   error,
 }: {
+  attending: boolean;
   onSubmit: (data: { name: string; guestCount: number; message: string }) => void;
   submitting: boolean;
   error: string | null;
@@ -30,7 +32,9 @@ export default function GuestInformationStep({
   return (
     <form onSubmit={handleSubmit}>
       <p className="mb-6 text-center text-[15px] italic text-ink/85">
-        We&apos;re so happy you&apos;ll be joining us! 🤍
+        {attending
+          ? "We're so happy you'll be joining us! 🤍"
+          : "We're sorry you can't make it — thank you for letting us know. 🤍"}
       </p>
 
       <div className="space-y-5">
@@ -55,34 +59,36 @@ export default function GuestInformationStep({
           )}
         </div>
 
-        <div>
-          <label className="mb-1.5 block text-[12px] tracking-[.12em] text-olive-dark/80">
-            NUMBER OF GUESTS
-          </label>
-          <div className="flex w-fit items-center gap-4 rounded-lg border border-olive-dark/15 bg-paper/60 px-4 py-2 shadow-sm">
-            <button
-              type="button"
-              aria-label="Decrease guests"
-              onClick={() => setGuestCount((n) => Math.max(1, n - 1))}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-olive-dark/25 text-olive-dark disabled:opacity-30"
-              disabled={guestCount <= 1}
-            >
-              −
-            </button>
-            <span className="w-4 text-center text-[15px] text-ink">
-              {guestCount}
-            </span>
-            <button
-              type="button"
-              aria-label="Increase guests"
-              onClick={() => setGuestCount((n) => Math.min(MAX_GUESTS, n + 1))}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-olive-dark/25 text-olive-dark disabled:opacity-30"
-              disabled={guestCount >= MAX_GUESTS}
-            >
-              +
-            </button>
+        {attending && (
+          <div>
+            <label className="mb-1.5 block text-[12px] tracking-[.12em] text-olive-dark/80">
+              NUMBER OF GUESTS
+            </label>
+            <div className="flex w-fit items-center gap-4 rounded-lg border border-olive-dark/15 bg-paper/60 px-4 py-2 shadow-sm">
+              <button
+                type="button"
+                aria-label="Decrease guests"
+                onClick={() => setGuestCount((n) => Math.max(1, n - 1))}
+                className="flex h-6 w-6 items-center justify-center rounded-full border border-olive-dark/25 text-olive-dark disabled:opacity-30"
+                disabled={guestCount <= 1}
+              >
+                −
+              </button>
+              <span className="w-4 text-center text-[15px] text-ink">
+                {guestCount}
+              </span>
+              <button
+                type="button"
+                aria-label="Increase guests"
+                onClick={() => setGuestCount((n) => Math.min(MAX_GUESTS, n + 1))}
+                className="flex h-6 w-6 items-center justify-center rounded-full border border-olive-dark/25 text-olive-dark disabled:opacity-30"
+                disabled={guestCount >= MAX_GUESTS}
+              >
+                +
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         <div>
           <label className="mb-1.5 block text-[12px] tracking-[.12em] text-olive-dark/80">
@@ -107,7 +113,11 @@ export default function GuestInformationStep({
         disabled={submitting}
         className="mt-7 w-full rounded-full bg-olive-dark px-6 py-3 text-[13px] tracking-[.15em] text-paper transition-opacity disabled:opacity-60"
       >
-        {submitting ? "CONFIRMING…" : "CONFIRM ATTENDANCE"}
+        {submitting
+          ? "SUBMITTING…"
+          : attending
+            ? "CONFIRM ATTENDANCE"
+            : "SUBMIT RSVP"}
       </button>
     </form>
   );

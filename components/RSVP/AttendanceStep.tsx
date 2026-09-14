@@ -22,28 +22,17 @@ type Attendance = "yes" | "no";
 
 export default function AttendanceStep({
   onContinue,
-  onDecline,
   submitting,
 }: {
-  onContinue: () => void;
-  onDecline: () => void;
+  onContinue: (attending: boolean) => void;
   submitting: boolean;
 }) {
   const [choice, setChoice] = useState<Attendance | null>(null);
-  const [declined, setDeclined] = useState(false);
 
   const options: { value: Attendance; label: string }[] = [
     { value: "yes", label: "Yes, I'll be there" },
     { value: "no", label: "Sorry, I can't make it" },
   ];
-
-  if (declined) {
-    return (
-      <p className="py-6 text-center text-lg italic text-ink/85">
-        Thank you for letting us know. You&apos;ll be missed! 🤍
-      </p>
-    );
-  }
 
   return (
     <div>
@@ -81,17 +70,10 @@ export default function AttendanceStep({
         <button
           type="button"
           disabled={submitting}
-          onClick={() => {
-            if (choice === "yes") {
-              onContinue();
-            } else {
-              setDeclined(true);
-              onDecline();
-            }
-          }}
+          onClick={() => onContinue(choice === "yes")}
           className="mt-6 w-full rounded-full bg-olive-dark px-6 py-3 text-[13px] tracking-[.15em] text-paper transition-opacity disabled:opacity-60"
         >
-          {choice === "yes" ? "CONTINUE" : "SUBMIT"}
+          CONTINUE
         </button>
       )}
     </div>

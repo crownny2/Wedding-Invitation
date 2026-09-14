@@ -121,12 +121,21 @@ export default async function AdminRsvpPage() {
               {declined.map((r) => (
                 <div
                   key={r.id}
-                  className="flex items-center justify-between rounded-xl border border-olive-dark/10 bg-paper/40 px-5 py-3"
+                  className="rounded-xl border border-olive-dark/10 bg-paper/40 px-5 py-4"
                 >
-                  <p className="text-[14px] text-ink/70">Declined</p>
-                  <p className="text-[12px] tracking-[.04em] text-mauve">
-                    {formatDate(r.created_at)}
-                  </p>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <p className="text-[16px] text-ink">
+                      {r.name ?? "Declined"}
+                    </p>
+                    <p className="text-[12px] tracking-[.04em] text-mauve">
+                      {formatDate(r.created_at)}
+                    </p>
+                  </div>
+                  {r.message && (
+                    <p className="mt-1.5 text-[14px] italic text-ink/75">
+                      &ldquo;{r.message}&rdquo;
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

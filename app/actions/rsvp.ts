@@ -4,13 +4,23 @@ import { createClient } from "@/lib/supabase/server";
 
 export type RsvpResult = { ok: true } | { ok: false; error: string };
 
-export async function submitDecline(): Promise<RsvpResult> {
+export async function submitDecline(input: {
+  name: string;
+  message: string;
+}): Promise<RsvpResult> {
+  const name = input.name.trim();
+  const message = input.message.trim();
+
+  if (!name) {
+    return { ok: false, error: "Please enter your name." };
+  }
+
   const supabase = await createClient();
 
   const { error } = await supabase.from("rsvps").insert({
-    name: null,
+    name,
     guest_count: null,
-    message: null,
+    message: message || null,
     attending: false,
   });
 

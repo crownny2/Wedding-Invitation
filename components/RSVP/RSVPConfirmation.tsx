@@ -14,19 +14,39 @@ function SprigIcon({ className = "" }: { className?: string }) {
   );
 }
 
-export default function RSVPConfirmation({ name }: { name: string }) {
+export default function RSVPConfirmation({
+  name,
+  attending,
+}: {
+  name: string;
+  attending: boolean;
+}) {
   return (
     <div className="py-4 text-center">
       <SprigIcon className="mx-auto mb-4 h-7 w-7 text-mauve" />
       <p className="font-display text-[28px] italic tracking-[-0.01em] text-wine">
         Thank You, {name}! 🤍
       </p>
-      <p className="mx-auto mt-3 max-w-[340px] text-[15px] italic leading-relaxed text-ink/85">
-        We&apos;re so excited to celebrate with you on our special day.
-      </p>
-      <p className="mt-1 text-[15px] italic text-ink/85">
-        See you at the wedding! 🌿
-      </p>
+      {attending ? (
+        <>
+          <p className="mx-auto mt-3 max-w-[340px] text-[15px] italic leading-relaxed text-ink/85">
+            We&apos;re so excited to celebrate with you on our special day.
+          </p>
+          <p className="mt-1 text-[15px] italic text-ink/85">
+            See you at the wedding! 🌿
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="mx-auto mt-3 max-w-[340px] text-[15px] italic leading-relaxed text-ink/85">
+            We&apos;re sorry you won&apos;t be able to join us, but we truly
+            appreciate you letting us know.
+          </p>
+          <p className="mt-1 text-[15px] italic text-ink/85">
+            You&apos;ll be missed! 🤍
+          </p>
+        </>
+      )}
     </div>
   );
 }
