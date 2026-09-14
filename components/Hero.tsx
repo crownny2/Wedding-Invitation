@@ -171,7 +171,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col sm:block">
+    <section className="relative flex min-h-[100vh] flex-col sm:block">
       {/* Garden backdrop — full bleed behind both panels */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -184,7 +184,7 @@ export default function Hero() {
           banner on mobile (in-flow, so the text below never overlaps it);
           absolutely positioned on larger screens so it can't affect where
           the text column centers itself. */}
-      <div className="relative h-[48svh] w-full shrink-0 sm:absolute sm:inset-y-0 sm:left-[5vw] sm:h-auto sm:w-[380px]">
+      <div className="relative h-[48vh] w-full shrink-0 sm:absolute sm:inset-y-0 sm:left-[5vw] sm:h-auto sm:w-[380px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/wed-cutout.png"
@@ -196,7 +196,7 @@ export default function Hero() {
 
       <SparkleField reduceMotion={!!reduceMotion} />
 
-      <div className="relative z-10 flex w-full flex-1 items-center justify-center px-5 py-10 text-center sm:min-h-[100svh] sm:flex-none sm:px-10 sm:py-16">
+      <div className="relative z-10 flex w-full flex-1 items-center justify-center px-5 py-10 text-center sm:min-h-[100vh] sm:flex-none sm:px-10 sm:py-16">
         <div className="mx-auto w-full max-w-[480px]">
         <SprigIcon className="mx-auto mb-4 h-6 w-6 text-mauve" />
 
